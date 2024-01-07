@@ -1,4 +1,3 @@
-// Necessary modules (use require statements)
 const inquirer = require('inquirer');
 const Employee = require('../models/employee');
 
@@ -49,7 +48,7 @@ async function viewAllEmployees() {
     const employee = new Employee();
     // Call the getAllEmployees method to retrieve all employees
     const employees = await employee.getAllEmployees();
-    // Display the employees
+    // Display the employees in a user-friendly format
     console.log(employees);
   } catch (error) {
     console.error(error);
