@@ -1,13 +1,6 @@
 const express = require('express');
 const Employee = require('../models/employee');
 const mainMenu = require('../views/mainMenu');
-const viewEmployees = require('../views/employeeView');
-const viewRoles = require('../views/roleView');
-const viewDepartments = require('../views/departmentView');
-const addEmployee = require('../views/employeeAdd');
-const addRole = require('../views/roleAdd');
-const addDepartment = require('../views/departmentAdd');
-const updateEmployeeRole = require('../views/employeeUpdate');
 const readline = require('readline');
 
 const rl = readline.createInterface({
