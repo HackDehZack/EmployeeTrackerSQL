@@ -1,22 +1,16 @@
 const express = require('express');
 const Employee = require('../models/employee');
 const mainMenu = require('../views/mainMenu');
-const readline = require('readline');
-const employeeRoutes = require('./routes/employeeRoutes');
-const roleRoutes = require('./routes/roleRoutes');
-const departmentRoutes = require('./routes/departmentRoutes');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const readlineSync = require('readline-sync');
+const employeeRoutes = require('../routes/employeeRoutes.js');
+const roleRoutes = require('../routes/roleRoutes.js');
+const departmentRoutes = require('../routes/departmentRoutes.js');
 
 function promptMainMenu() {
   console.log(mainMenu);
 
-  rl.question('Please enter your choice: ', (choice) => {
-    handleMainMenuChoice(choice);
-  });
+  const choice = readlineSync.question('Please enter your choice: ');
+  handleMainMenuChoice(choice);
 }
 
 function handleMainMenuChoice(choice) {
@@ -81,83 +75,69 @@ function handleMainMenuChoice(choice) {
 }
 
 function promptAddDepartment() {
-  rl.question('Enter the name of the department: ', (departmentName) => {
-    Employee.addDepartment(departmentName)
-      .then(() => {
-        console.log('Department added successfully.');
-        promptMainMenu();
-      })
-      .catch((error) => {
-        console.error('An error occurred while adding a department:', error);
-        promptMainMenu();
-      });
-  });
-}
-function promptAddRole() {
-  rl.question('Enter the name of the role: ', (roleName) => {
-    rl.question('Enter the salary for the role: ', (salary) => {
-      rl.question('Enter the department ID for the role: ', (departmentId) => {
-        Employee.addRole(roleName, salary, departmentId)
-          .then(() => {
-            console.log('Role added successfully.');
-            promptMainMenu();
-          })
-          .catch((error) => {
-            console.error('An error occurred while adding a role:', error);
-            promptMainMenu();
-          });
-      });
+  const departmentName = readlineSync.question('Enter the name of the department: ');
+  Employee.addDepartment(departmentName)
+    .then(() => {
+      console.log('Department added successfully.');
+      promptMainMenu();
+    })
+    .catch((error) => {
+      console.error('An error occurred while adding a department:', error);
+      promptMainMenu();
     });
-  });
+}
+
+function promptAddRole() {
+  const roleName = readlineSync.question('Enter the name of the role: ');
+  const salary = readlineSync.question('Enter the salary for the role: ');
+  const departmentId = readlineSync.question('Enter the department ID for the role: ');
+  Employee.addRole(roleName, salary, departmentId)
+    .then(() => {
+      console.log('Role added successfully.');
+      promptMainMenu();
+    })
+    .catch((error) => {
+      console.error('An error occurred while adding a role:', error);
+      promptMainMenu();
+    });
 }
 
 function promptAddEmployee() {
-  rl.question('Enter the employee\'s first name: ', (firstName) => {
-    rl.question('Enter the employee\'s last name: ', (lastName) => {
-      rl.question('Enter the role ID for the employee: ', (roleId) => {
-        rl.question('Enter the manager ID for the employee: ', (managerId) => {
-          Employee.addEmployee(firstName, lastName, roleId, managerId)
-            .then(() => {
-              console.log('Employee added successfully.');
-              promptMainMenu();
-            })
-            .catch((error) => {
-              console.error('An error occurred while adding an employee:', error);
-              promptMainMenu();
-            });
-        });
-      });
+  const firstName = readlineSync.question("Enter the employee's first name: ");
+  const lastName = readlineSync.question("Enter the employee's last name: ");
+  const roleId = readlineSync.question('Enter the role ID for the employee: ');
+  const managerId = readlineSync.question('Enter the manager ID for the employee: ');
+  Employee.addEmployee(firstName, lastName, roleId, managerId)
+    .then(() => {
+      console.log('Employee added successfully.');
+      promptMainMenu();
+    })
+    .catch((error) => {
+      console.error('An error occurred while adding an employee:', error);
+      promptMainMenu();
     });
-  });
 }
 
 function promptUpdateEmployeeRole() {
-  rl.question('Enter the ID of the employee to update: ', (employeeId) => {
-    rl.question('Enter the new role ID for the employee: ', (roleId) => {
-      Employee.updateEmployeeRole(employeeId, roleId)
-        .then(() => {
-          console.log('Employee role updated successfully.');
-          promptMainMenu();
-        })
-        .catch((error) => {
-          console.error('An error occurred while updating employee role:', error);
-          promptMainMenu();
-        });
+  const employeeId = readlineSync.question('Enter the ID of the employee to update: ');
+  const roleId = readlineSync.question('Enter the new role ID for the employee: ');
+  Employee.updateEmployeeRole(employeeId, roleId)
+    .then(() => {
+      console.log('Employee role updated successfully.');
+      promptMainMenu();
+    })
+    .catch((error) => {
+      console.error('An error occurred while updating employee role:', error);
+      promptMainMenu();
     });
-  });
 }
 
-
-
-
-//server localhost 
 const app = express();
 const port = 3000;
 
 app.listen(port, () => {
-  console.log(`Server started on http://localhost:${3000}`);
+  console.log(`Server started on http://localhost:${port}`);
 });
-
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
