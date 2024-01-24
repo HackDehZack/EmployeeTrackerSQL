@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Employee = require('../models/employee');
+const seed = require('../db/seeds.js');
 
 router.get('/', (req, res) => {
   Employee.getAllEmployees()
