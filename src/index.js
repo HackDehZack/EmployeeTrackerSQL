@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const db = require("../db/connection");
 const { table } = require("console");
 
-const executeQuery = async (query, replacements = []) => {
+const executeQuery = async (query, replacements = {}) => {
   try {
     return await db.query(query, {
       replacements: replacements,
