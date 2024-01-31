@@ -1,4 +1,4 @@
-Employee Tracker SQL
+##EmployeeTrackerSQL
 Welcome to the Employee Tracker SQL repository! This powerful content management system is designed to streamline the process of managing employee data stored in a MySQL database. With its user-friendly interface and adherence to the MVC architecture, the Employee Tracker SQL offers an efficient and organized solution for viewing, adding, and updating department, role, and employee data.
 
 Link to demonstration: 
