@@ -3,6 +3,7 @@ Welcome to the Employee Tracker SQL repository! This powerful content management
 
 Link to demonstration: 
 
+[Untitled_ Jan 31, 2024 5_48 PM.webm](https://github.com/HackDehZack/EmployeeTrackerSQL/assets/140559436/0a5917cf-2f67-4ed4-ac91-5cc0fa256274)
 
 
 
