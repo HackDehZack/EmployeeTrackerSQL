@@ -1,41 +1,26 @@
--- Active: 1706132468299@@127.0.0.1@3306@employeetrackersql
--- Create departments table
-CREATE TABLE IF NOT EXISTS department (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
-);
+INSERT INTO department (name) 
+VALUES 
+('Sales'),
+('Engineering'),
+('Finance'),
+('Legal');
 
--- Create roles table
-CREATE TABLE IF NOT EXISTS role (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    salary DECIMAL(10, 2) NOT NULL,
-    department_id INT,
-    FOREIGN KEY (department_id) REFERENCES department(id)
-);
+INSERT INTO role (title, salary, department_id)
+VALUES 
+('Sales Lead', 100000, 1),
+('Salesperson', 80000, 1),
+('Lead Engineer', 150000, 2),
+('Software Engineer', 120000, 2),
+('Accountant', 125000, 3),
+('Legal Team Lead', 250000, 4),
+('Lawyer', 190000, 4);
 
--- Create employees table
-CREATE TABLE IF NOT EXISTS employee (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    role_id INT,
-    manager_id INT,
-    FOREIGN KEY (role_id) REFERENCES role(id),
-    FOREIGN KEY (manager_id) REFERENCES employee(id)
-);
-
--- Insert departments
-INSERT INTO department (name) VALUES ('Engineering');
-INSERT INTO department (name) VALUES ('Marketing');
-INSERT INTO department (name) VALUES ('Sales');
-
--- Insert roles
-INSERT INTO role (title, salary, department_id) VALUES ('Software Engineer', 95000, 1);
-INSERT INTO role (title, salary, department_id) VALUES ('Marketing Manager', 90000, 2);
-INSERT INTO role (title, salary, department_id) VALUES ('Sales Representative', 80000, 3);
-
--- Insert employees
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('John', 'Doe', 1, NULL);
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Jane', 'Smith', 2, 1);
-INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('Mike', 'Johnson', 3, 2);
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
+VALUES 
+('Superman', 'Clark Kent', 1, NULL),
+('Spiderman', 'Peter Parker', 2, 1),
+('Wonder Woman', 'Diana Prince', 3, 1),
+('Batman', 'Bruce Wayne', 4, 3),
+('Flash', 'Barry Allen', 5, 3),
+('Black Widow', 'Natasha Romanoff', 6, 4),
+('Captain Marvel', 'Carol Danvers', 7, 6);

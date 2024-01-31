@@ -1,23 +1,21 @@
+// Require the dotenv package to use environment variables
+require('dotenv').config();
+
+// Import necessary modules from Sequelize
+const { Sequelize } = require('sequelize');
 const mysql = require('mysql2');
 
-// Create the database connection
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: 'Password',
-  database: 'employeetrackersql'
-});
+// Create a new Sequelize instance with database connection details
+const sequelize = new Sequelize(
+    process.env.DB_NAME,     // Database name from environment variables
+    process.env.DB_USER,     // Database user from environment variables
+    process.env.DB_PW,       // Database password from environment variables
+    {
+        host: 'localhost',    // Database host
+        dialect: 'mysql',     // Dialect (type) of the database
+        port: 3306             // Database port
+    }
+);
 
-
-
-// Connect to the database
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Connected to the database tehe!');
-});
-
-
-
-// Export the connection object
-module.exports = connection;
+// Export the Sequelize instance for use in other parts of the application
+module.exports = sequelize;
