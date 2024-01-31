@@ -1,6 +1,8 @@
 const inquirer = require("inquirer");
 const db = require("./db/connection");
 
+
+
 // Function to view all employees
 const viewAllEmployees = async () => {
   try {
@@ -16,10 +18,15 @@ const viewAllEmployees = async () => {
       LEFT JOIN department d ON r.department_id = d.id
     `;
 
+
+
     // Execute the query
     const employees = await db.query(query, {
       type: db.QueryTypes.SELECT,
     });
+
+// above was pain in rear, refer to documentation if you're working on a similar project and need assistance... or email me!
+
 
     // Format the retrieved employees data for better display
     const formattedEmployees = employees.map((employee) => {
@@ -34,6 +41,9 @@ const viewAllEmployees = async () => {
       };
     });
 
+
+
+
     // Display the formatted employee data in a table
     console.table(formattedEmployees);
     start();
@@ -42,6 +52,9 @@ const viewAllEmployees = async () => {
     start();
   }
 };
+
+
+
 
 // Function to add a new employee
 const addEmployee = async () => {

@@ -1,6 +1,6 @@
 const { addEmployee } = require('./index');
 
-// Mock the dependencies
+// Mocking the dependencies tehe XD
 jest.mock('inquirer', () => ({
   prompt: jest.fn().mockResolvedValue({
     first_name: 'John',
@@ -24,7 +24,7 @@ describe('addEmployee', () => {
     // Call the addEmployee function
     await addEmployee();
 
-    // Assertions
+    // Assertions 
     expect(console.log).toHaveBeenCalledWith('Employee added!');
     expect(console.log).toHaveBeenCalledTimes(1);
   });
