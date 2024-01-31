@@ -394,8 +394,10 @@ const start = () => {
         case "Add Department":
           addDepartment();
           break;
-        default:
+        case "Quit":
+          console.log("Goodbye Boss!");
           process.exit();
+          break;
       }
     })
     .catch((error) => {
